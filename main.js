@@ -1,18 +1,23 @@
 console.log("Hello world :D");
 let canvas = document.getElementById("gameCanvas");
+let tL = document.getElementById("tuneLeft");
+let tR = document.getElementById("tuneRight");
+let t = document.getElementById("tune");
 let context = canvas.getContext("2d");
 
-canvas.width = 650;
+let w = 650;
+canvas.width = w;
+let h = 200;
 canvas.height = 200;
 let a = 50;
 let nx = 13;
 let ny = 4;
 let clickedX = 0;
 let clickedY = 0;
-let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 let tuningOffset = 0;
 let fretImg = new Image();
-fretImg.src = "images/string.png";
+//fretImg.src = "images/string.png";
 let clickedImg = new Image();
 clickedImg.src = "images/click.png";
 
@@ -26,24 +31,61 @@ function drawMap(x, y) {
     context.lineTo(a, 200);
     context.stroke();
 
+    context.beginPath();
+    context.moveTo(0, 23);
+    context.lineTo(w, 23);
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(0, 23 + a);
+    context.lineTo(w, 23 + a);
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(0, 23 + (a * 2));
+    context.lineTo(w, 23 + (a * 2));
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(0, 23 + (a * 3));
+    context.lineTo(w, 23 + (a * 3));
+    context.stroke();
+
     for (let j = 0; j < ny; j++) {
 
         for (let i = 0; i < nx; i++) {
             if (j == 0) {
                 context.drawImage(fretImg, i * a, j * a, a, a);
-                context.fillText(notes[i + tuningOffset + 9], (i) * a + 22, (j + 1) * a - 22);
+                if (tuningOffset < 0) {
+                    context.fillText(notes[i + tuningOffset + 9 + 12], (i) * a + 22, (j + 1) * a - 22);
+                } else {
+                    context.fillText(notes[i + tuningOffset + 9], (i) * a + 22, (j + 1) * a - 22);
+                }
+
+
             } else if (j == 1) {
-
                 context.drawImage(fretImg, i * a, j * a, a, a);
-                context.fillText(notes[i + tuningOffset + 5], (i) * a + 22, (j + 1) * a - 22);
+                if (tuningOffset < 0) {
+                    context.fillText(notes[i + tuningOffset + 4 + 12], (i) * a + 22, (j + 1) * a - 22);
+                } else {
+                    context.fillText(notes[i + tuningOffset + 4], (i) * a + 22, (j + 1) * a - 22);
+                }
+
             } else if (j == 2) {
-
                 context.drawImage(fretImg, i * a, j * a, a, a);
-                context.fillText(notes[i + tuningOffset], (i) * a + 22, (j + 1) * a - 22);
+                if (tuningOffset < 0) {
+                    context.fillText(notes[i + tuningOffset + 12], (i) * a + 22, (j + 1) * a - 22);
+                } else {
+                    context.fillText(notes[i + tuningOffset], (i) * a + 22, (j + 1) * a - 22);
+                }
+
             } else if (j == 3) {
-
                 context.drawImage(fretImg, i * a, j * a, a, a);
-                context.fillText(notes[i + tuningOffset + 7], (i) * a + 22, (j + 1) * a - 22);
+                if (tuningOffset < 0) {
+                    context.fillText(notes[i + tuningOffset + 7 + 12], (i) * a + 22, (j + 1) * a - 22);
+                } else {
+                    context.fillText(notes[i + tuningOffset + 7], (i) * a + 22, (j + 1) * a - 22);
+                }
             }
         }
     }
@@ -65,6 +107,14 @@ canvas.onclick = function(e) {
 
 }
 
+tL.onclick = function() {
+    tuningOffset--;
+    t.textContent = tuningOffset;
+};
 
+tR.onclick = function() {
+    tuningOffset++;
+    t.textContent = tuningOffset;
+}
 
 console.log(canvas);
