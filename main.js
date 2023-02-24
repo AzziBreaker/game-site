@@ -1,9 +1,10 @@
-console.log("Hello world :D");
 let canvas = document.getElementById("gameCanvas");
 let tL = document.getElementById("tuneLeft");
 let tR = document.getElementById("tuneRight");
 let t = document.getElementById("tune");
 let context = canvas.getContext("2d");
+var background = new Image();
+background.src = "images/background.jpg";
 
 let w = 650;
 canvas.width = w;
@@ -26,7 +27,7 @@ let notes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
     90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
     100
 ];
-let tuningOffset = 0;
+let tuningOffset = 48;
 let clickedImg = new Image();
 let x;
 let y;
@@ -36,6 +37,7 @@ drawMap();
 
 function drawMap(x, y) {
 
+    context.drawImage(background, 0, 0);
     context.beginPath();
     context.moveTo(a, 0);
     context.lineTo(a, 200);
@@ -61,38 +63,28 @@ function drawMap(x, y) {
     context.lineTo(w, 23 + (a * 3));
     context.stroke();
 
+
+
     for (let j = 0; j < ny; j++) {
-
         for (let i = 0; i < nx; i++) {
+            var note;
+            var octave;
             if (j == 0) {
-
-
-                context.fillText(notes[i + tuningOffset + 9] % 12, (i) * a + 22, (j + 1) * a - 22);
-
-
+                note = whatNote(notes[i + tuningOffset + 9] % 12);
+                context.fillText(note, (i) * a + 22, (j + 1) * a - 22);
             } else if (j == 1) {
-
-
-                context.fillText(notes[i + tuningOffset + 4] % 12, (i) * a + 22, (j + 1) * a - 22);
-
-
+                note = whatNote(notes[i + tuningOffset + 4] % 12);
+                context.fillText(note, (i) * a + 22, (j + 1) * a - 22);
             } else if (j == 2) {
-
-
-                context.fillText(notes[i + tuningOffset] % 12, (i) * a + 22, (j + 1) * a - 22);
-
-
+                note = whatNote(notes[i + tuningOffset] % 12);
+                context.fillText(note, (i) * a + 22, (j + 1) * a - 22);
             } else if (j == 3) {
-
-
-                context.fillText(notes[i + tuningOffset + 7] % 12, (i) * a + 22, (j + 1) * a - 22);
-
+                note = whatNote(notes[i + tuningOffset + 7] % 12);
+                context.fillText(note, (i) * a + 22, (j + 1) * a - 22);
             }
         }
     }
     context.drawImage(clickedImg, x * a, y * a, a, a);
-
-
 }
 
 function clearMap() {
@@ -105,19 +97,62 @@ canvas.onclick = function(e) {
     y = Math.floor((e.y - canvas.offsetTop) / a);
     drawMap(x, y);
     printNote(x, y);
-
 }
 
 function printNote(x, y) {
+    var note;
+    var octave;
     if (y == 0) {
-        console.log(notes[x + tuningOffset + 9] % 12);
+        note = whatNote(notes[x + tuningOffset + 9] % 12);
+        octave = Math.floor(notes[x + tuningOffset + 9] / 12);
     } else if (y == 1) {
-        console.log(notes[x + tuningOffset + 4] % 12);
+        note = whatNote(notes[x + tuningOffset + 4] % 12);
+        octave = Math.floor(notes[x + tuningOffset + 4] / 12);
     } else if (y == 2) {
-        console.log(notes[x + tuningOffset] % 12);
-    } else {
-        console.log(notes[x + tuningOffset + 7] % 12);
+        note = whatNote(notes[x + tuningOffset] % 12);
+        octave = Math.floor(notes[x + tuningOffset + 12] / 12);
+    } else if (y == 3) {
+        note = whatNote(notes[x + tuningOffset + 7] % 12);
+        octave = Math.floor(notes[x + tuningOffset + 7] / 12);
     }
+
+    console.log(note + " " + octave);
+
+    return {
+        note,
+        octave
+    }
+}
+
+function whatNote(noteNum) {
+    var note;
+    if (noteNum == 0) {
+        note = "C";
+    } else if (noteNum == 1) {
+        note = "C#";
+    } else if (noteNum == 2) {
+        note = "D";
+    } else if (noteNum == 3) {
+        note = "D#";
+    } else if (noteNum == 4) {
+        note = "E";
+    } else if (noteNum == 5) {
+        note = "F";
+    } else if (noteNum == 6) {
+        note = "F#";
+    } else if (noteNum == 7) {
+        note = "G";
+    } else if (noteNum == 8) {
+        note = "G#";
+    } else if (noteNum == 9) {
+        note = "A";
+    } else if (noteNum == 10) {
+        note = "A#";
+    } else if (noteNum == 11) {
+        note = "B";
+    }
+
+    return note;
 }
 
 function press1() {
@@ -653,7 +688,6 @@ document.onkeypress = function(e) {
             break;
 
     }
-    console.log(key);
 }
 
 
@@ -662,21 +696,12 @@ document.onkeypress = function(e) {
 
 tL.onclick = function() {
     tuningOffset--;
-    t.textContent = tuningOffset;
+    t.textContent = tuningOffset - 48;
 };
 
 tR.onclick = function() {
     tuningOffset++;
-    t.textContent = tuningOffset;
+    t.textContent = tuningOffset - 48;
 }
 
 console.log(canvas);
-
-function A4() {
-    var A4 = new Audio("");
-    A4.play();
-}
-
-function whatNote() {
-
-}
