@@ -96,7 +96,7 @@ canvas.onclick = function(e) {
     x = Math.floor((e.x - canvas.offsetLeft) / a);
     y = Math.floor((e.y - canvas.offsetTop) / a);
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function printNote(x, y) {
@@ -110,19 +110,34 @@ function printNote(x, y) {
         octave = Math.floor(notes[x + tuningOffset + 4] / 12);
     } else if (y == 2) {
         note = whatNote(notes[x + tuningOffset] % 12);
-        octave = Math.floor(notes[x + tuningOffset + 12] / 12);
+        octave = Math.floor(notes[x + tuningOffset] / 12);
     } else if (y == 3) {
         note = whatNote(notes[x + tuningOffset + 7] % 12);
         octave = Math.floor(notes[x + tuningOffset + 7] / 12);
     }
 
-    console.log(note + " " + octave);
+    console.log("notes/"+note+octave+".mp3");
 
-    return {
-        note,
-        octave
-    }
+    if (note == "A#") {
+        note = "AH";
+    } else if (note == "C#") {
+        note = "CH";
+    } else if (note == "D#") {
+        note = "DH";
+    } else if (note == "F#") {
+        note = "FH";
+    } else if (note == "G#") {
+        note = "GH";
+    } 
+
+    return "notes/"+note+octave+".mp3"
 }
+
+function play(fileName) {
+    var audio = new Audio(fileName);
+    audio.play();
+}
+
 
 function whatNote(noteNum) {
     var note;
@@ -160,7 +175,7 @@ function press1() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press2() {
@@ -168,7 +183,7 @@ function press2() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press3() {
@@ -176,7 +191,7 @@ function press3() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press4() {
@@ -184,7 +199,7 @@ function press4() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press5() {
@@ -192,7 +207,7 @@ function press5() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press6() {
@@ -200,7 +215,7 @@ function press6() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press7() {
@@ -208,7 +223,7 @@ function press7() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press8() {
@@ -216,7 +231,7 @@ function press8() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press9() {
@@ -224,7 +239,7 @@ function press9() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function press0() {
@@ -232,7 +247,7 @@ function press0() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressMin() {
@@ -240,7 +255,7 @@ function pressMin() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressEqual() {
@@ -248,7 +263,7 @@ function pressEqual() {
     y = 0;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressQ() {
@@ -256,7 +271,7 @@ function pressQ() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressW() {
@@ -264,7 +279,7 @@ function pressW() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressE() {
@@ -272,7 +287,7 @@ function pressE() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressR() {
@@ -280,7 +295,7 @@ function pressR() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressT() {
@@ -288,7 +303,7 @@ function pressT() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressY() {
@@ -296,7 +311,7 @@ function pressY() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressU() {
@@ -304,7 +319,7 @@ function pressU() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressI() {
@@ -312,7 +327,7 @@ function pressI() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressO() {
@@ -320,7 +335,7 @@ function pressO() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressP() {
@@ -328,7 +343,7 @@ function pressP() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressR1() {
@@ -336,7 +351,7 @@ function pressR1() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressR2() {
@@ -344,7 +359,7 @@ function pressR2() {
     y = 1;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressA() {
@@ -352,7 +367,7 @@ function pressA() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressS() {
@@ -360,7 +375,7 @@ function pressS() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressD() {
@@ -368,7 +383,7 @@ function pressD() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressF() {
@@ -376,7 +391,7 @@ function pressF() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressG() {
@@ -384,7 +399,7 @@ function pressG() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressH() {
@@ -392,7 +407,7 @@ function pressH() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressJ() {
@@ -400,7 +415,7 @@ function pressJ() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressK() {
@@ -408,7 +423,7 @@ function pressK() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressL() {
@@ -416,7 +431,7 @@ function pressL() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressDots() {
@@ -424,7 +439,7 @@ function pressDots() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressKav() {
@@ -432,7 +447,7 @@ function pressKav() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressLine() {
@@ -440,7 +455,7 @@ function pressLine() {
     y = 2;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressSmol() {
@@ -448,7 +463,7 @@ function pressSmol() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressZ() {
@@ -456,7 +471,7 @@ function pressZ() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressX() {
@@ -464,7 +479,7 @@ function pressX() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressC() {
@@ -472,7 +487,7 @@ function pressC() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressV() {
@@ -480,7 +495,7 @@ function pressV() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressB() {
@@ -488,7 +503,7 @@ function pressB() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressN() {
@@ -496,7 +511,7 @@ function pressN() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressM() {
@@ -504,7 +519,7 @@ function pressM() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressZap() {
@@ -512,7 +527,7 @@ function pressZap() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressDot() {
@@ -520,7 +535,7 @@ function pressDot() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressSlash() {
@@ -528,7 +543,7 @@ function pressSlash() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 function pressShft() {
@@ -536,7 +551,7 @@ function pressShft() {
     y = 3;
     clearMap();
     drawMap(x, y);
-    printNote(x, y);
+    play(printNote(x,y));
 }
 
 document.onkeypress = function(e) {
@@ -703,5 +718,7 @@ tR.onclick = function() {
     tuningOffset++;
     t.textContent = tuningOffset - 48;
 }
+
+
 
 console.log(canvas);
